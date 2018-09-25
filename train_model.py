@@ -9,7 +9,7 @@ import time
 import argparse
 
 ###
-# This script takes in a binary file that contains all the images and their respective labels and trains 
+# This script takes in a binayr file that contains all the images and their respective labels and trains 
 # a convolutional neural that classifies the images. It outputs the model into the desired directory. In
 # the directory, there would be multiple files that represent the tensorflow checkpoint and a .pb file 
 # that stores the model weights and structure. It is also possible to reload a checkpoint to resume or
