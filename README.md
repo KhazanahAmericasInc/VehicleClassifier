@@ -2,6 +2,18 @@
 # Vehicle Classifier
 This is a hard-fork and re-organization of the *SensortowerCNNClassifier* Repository.
 
+## Dependencies
+The following list of dependencies are required for the classifier and training scripts to function.
+- Python 3
+	- Tensorflow
+	- Numpy
+	- OpenCV
+	- Pillow
+	- Matplotlib
+	- BeautifulSoup4
+	- Urllib3
+
+
 ## Classification Quickstart
 1. Clone the repository 
 2. Create a folder with images of vehicles
