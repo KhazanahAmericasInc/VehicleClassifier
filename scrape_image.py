@@ -25,14 +25,19 @@ def main(args):
 
         cwd = os.getcwd()
         parent_folder = os.path.join(cwd, default_parent_folder)
-        if not os.path.exists(parent_folder):
-            os.mkdir(parent_folder)
+
         if args.query is not None:
             class_name = args.folder_name
             queries = args.query
         else:
             class_name = "dog"
             queries = ["dogs", "pug", "puppy"]
+
+        if not os.path.exists(parent_folder):
+            os.mkdir(parent_folder)
+
+        if not os.path.exists(os.path.join(parent_folder, class_name)):
+            os.mkdir(os.path.join(parent_folder, class_name))
 
         save_directory = os.path.join(parent_folder, class_name)
 
@@ -49,15 +54,16 @@ def main(args):
                     ActualImages.append((link,Type))
                 counter = 0
                 for i , (img , _) in enumerate( ActualImages):
-                        try:
-                                raw_img = Image.open(BytesIO(requests.get(img, timeout=30).content))
-                                raw_img.save(os.path.join(save_directory, "{}{}.{}".format(query, counter, raw_img.format.lower())))
-                                counter += 1
-                                if counter >= max_images:
-                                    break
-                                raw_img.close()
-                        except:
-                                pass
+                    try:
+                        raw_img = Image.open(BytesIO(requests.get(img, timeout=30).content))
+                        raw_img.save(os.path.join(save_directory, "{}{}.{}".format(query, counter, raw_img.format.lower())))
+                        counter += 1
+                        if counter >= max_images:
+                            break
+                        raw_img.close()
+                    except Exception as e:
+                        print(e)
+                        pass
                 print("Cycle for " + query + " done")
         print("All Images have been downloaded.")
 
