@@ -36,35 +36,38 @@ def main(args):
         if not os.path.exists(parent_folder):
             os.mkdir(parent_folder)
 
-        if not os.path.exists(os.path.join(parent_folder, class_name)):
-            os.mkdir(os.path.join(parent_folder, class_name))
 
-        save_directory = os.path.join(parent_folder, class_name)
+
+        #save_directory = os.path.join(parent_folder, class_name)
 
         # for each of the input query, perform search and save the image.
         for query in queries:
-                max_images = 100
-                query= query.replace(" ", "+") 
-                url="https://www.google.co.in/search?q="+query+"&source=lnms&tbm=isch"
-                header={'User-Agent':"Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/43.0.2357.134 Safari/537.36"}
-                soup = get_soup(url,header)
-                ActualImages=[]# contains the link for Large original images, type of  image
-                for a in soup.find_all("div",{"class":"rg_meta"}):
-                    link , Type =json.loads(a.text)["ou"]  ,json.loads(a.text)["ity"]
-                    ActualImages.append((link,Type))
-                counter = 0
-                for i , (img , _) in enumerate( ActualImages):
-                    try:
-                        raw_img = Image.open(BytesIO(requests.get(img, timeout=30).content))
-                        raw_img.save(os.path.join(save_directory, "{}{}.{}".format(query, counter, raw_img.format.lower())))
-                        counter += 1
-                        if counter >= max_images:
-                            break
-                        raw_img.close()
-                    except Exception as e:
-                        print(e)
-                        pass
-                print("Cycle for " + query + " done")
+            print("beginning query for: ",query)
+            if not os.path.exists(os.path.join(parent_folder, query)):
+                os.mkdir(os.path.join(parent_folder, query))
+
+            max_images = 100
+            query= query.replace(" ", "+") 
+            url="https://www.google.co.in/search?q="+query+"&source=lnms&tbm=isch"
+            header={'User-Agent':"Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/43.0.2357.134 Safari/537.36"}
+            soup = get_soup(url,header)
+            ActualImages=[]# contains the link for Large original images, type of  image
+            for a in soup.find_all("div",{"class":"rg_meta"}):
+                link , Type =json.loads(a.text)["ou"]  ,json.loads(a.text)["ity"]
+                ActualImages.append((link,Type))
+            counter = 0
+            for i , (img , _) in enumerate( ActualImages):
+                try:
+                    raw_img = Image.open(BytesIO(requests.get(img, timeout=30).content))
+                    raw_img.save(os.path.join(os.path.join(parent_folder, query), "{}{}.{}".format(query, counter, raw_img.format.lower())))
+                    counter += 1
+                    if counter >= max_images:
+                        break
+                    raw_img.close()
+                except Exception as e:
+                    print(e)
+                    pass
+            print("Cycle for " + query + " done")
         print("All Images have been downloaded.")
 
 if __name__ == '__main__':

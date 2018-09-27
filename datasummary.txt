@@ -1,0 +1,5 @@
+CLASSLABELS = 3
+CLASS	NUMIMAGES
+cat	92
+dog	96
+hawk	94

@@ -15,7 +15,13 @@ import random
 # It creates a csv file inside the directory that lists all the files
 def makecsv(subdir, files):
     csvfile = 'GT_{}.csv'.format(subdir)
-    with open(subdir + "/" + csvfile, 'w') as outf:
+    path = os.path.join(os.getcwd()+"/scraped_images",subdir + "/" + csvfile)
+    print(path)
+
+    print("hi")
+
+    with open(path, 'w') as outf:
+        print("hi2")
         for fi in files:
             outf.write(fi+"\n")
 
@@ -31,7 +37,13 @@ def main(arg_dict):
 
     # Finding the Ground Truth csv files in each class folder
     cwd = os.getcwd()
-    subdirs = [subdir for subdir in os.listdir(cwd) if os.path.isdir(subdir)]
+    cwd = os.path.join(cwd,"scraped_images")
+
+    subdirs = []
+    for i in os.listdir(cwd):
+        if os.path.isdir(os.path.join(cwd,i)):
+            subdirs.append(i) 
+    #subdirs = [subdir for subdir in os.listdir(cwd) if os.path.isdir(subdir)]
     subdirs.sort()
 
     # Iterates through all subdirectories found
@@ -45,6 +57,7 @@ def main(arg_dict):
         # If there are no csv files in the directory, create a new one.
         if len(csvfiles) == 0:
             print ("NOTE: Making csv file for directory {}".format(subdir))
+            print(os.path.join(cwd,subdir))
             csvfiles = [makecsv(subdir, files)]
         elif len(csvfiles) > 1:
             print("ERROR: Directory {} has more than one csv file!".format(subdir))
@@ -71,6 +84,7 @@ def main(arg_dict):
                 else:
                     imagecount[subdir] = 1
 
+    print("hi")
     # Writing to summary list file
     with open(arg_dict.output_list_file, 'w') as outfile:
         outfile.writelines(imagelist)
@@ -84,7 +98,8 @@ def main(arg_dict):
 
     # Creating the bar graph
     x = np.arange(len(imagecount.keys()))
-    plt.bar(x, imagecount.values())
+    print(x)
+    plt.bar(x, list(imagecount.values()))
     plt.xticks(x, imagecount.keys())
     plt.savefig(arg_dict.output_class_hist)
  
