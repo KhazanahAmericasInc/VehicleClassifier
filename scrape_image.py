@@ -37,7 +37,6 @@ def main(args):
             os.mkdir(parent_folder)
 
 
-
         #save_directory = os.path.join(parent_folder, class_name)
 
         # for each of the input query, perform search and save the image.
