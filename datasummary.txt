@@ -1,5 +1,0 @@
-CLASSLABELS = 3
-CLASS	NUMIMAGES
-dogs	98
-pug	95
-puppy	98
