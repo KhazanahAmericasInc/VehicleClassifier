@@ -16,12 +16,9 @@ import random
 def makecsv(subdir, files):
     csvfile = 'GT_{}.csv'.format(subdir)
     path = os.path.join(os.getcwd()+"/scraped_images",subdir + "/" + csvfile)
-    print(path)
-
-    print("hi")
+    print("Making CSV for: " + path)
 
     with open(path, 'w') as outf:
-        print("hi2")
         for fi in files:
             outf.write(fi+"\n")
 
@@ -84,7 +81,6 @@ def main(arg_dict):
                 else:
                     imagecount[subdir] = 1
 
-    print("hi")
     # Writing to summary list file
     with open(arg_dict.output_list_file, 'w') as outfile:
         outfile.writelines(imagelist)
@@ -98,7 +94,6 @@ def main(arg_dict):
 
     # Creating the bar graph
     x = np.arange(len(imagecount.keys()))
-    print(x)
     plt.bar(x, list(imagecount.values()))
     plt.xticks(x, imagecount.keys())
     plt.savefig(arg_dict.output_class_hist)

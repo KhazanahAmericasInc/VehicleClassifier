@@ -82,6 +82,7 @@ def main(args):
 	# Annotations are: imagefile
 	for annot in annotations:
 		imagepath = os.path.join(imagedir, annot.strip())
+		print(imagepath)
 
 		image = cv2.imread(imagepath)
 		if image is not None:
