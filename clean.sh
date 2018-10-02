@@ -10,4 +10,9 @@
 rm -Rf scraped_images
 rm -Rf resized2
 rm -Rf resized3
+rm -Rf output
+rm -Rf resized
+
 rm classhistogram.png datasummary.txt imagelist.csv
+rm nodropout.pb
+rm data.p

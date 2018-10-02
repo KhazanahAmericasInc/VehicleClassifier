@@ -15,7 +15,8 @@ import cv2
 INPUTOPERATION = "input"
 OUTPUTOPERATION = "output"
 IMAGESHAPE = 64
-LABELS = ("DOG", "PUG", "PUPPY")
+LABELS=("VAN","PLANE","SHIP")
+#LABELS = ("DOG", "PUG", "PUPPY")
 #LABELS = ("SUV", "SEDAN", "TRUCK")
 
 # Given a file path to a tensorflow model, it loads the graph.

@@ -17,7 +17,7 @@ import argparse
 ###
 
 # global constants for the script
-VALIDATIONSIZE = 50
+VALIDATIONSIZE = 10
 BATCHSIZE = 100
 LEARNINGRATE = 0.001
 DECAY = 0.9
@@ -189,7 +189,6 @@ def main(args):
             # Initialize batch image generator
             train_gen = batch_gen(x_t, y_t, BATCHSIZE)
             num_batches_per_epoch = x_t.shape[0] // BATCHSIZE
-            print(num_batches_per_epoch)
 
             for _ in range(num_batches_per_epoch):
                 
@@ -201,12 +200,12 @@ def main(args):
                 stepcount += 1
 
                 # Display training status
-                if stepcount % 100 == 0:
+                if stepcount % 20 == 0:
                     duration = time.time() - start_time
                     print("Step %d: loss = %.4f. Time Elapsed = %.3f sec" % (stepcount, loss_value, duration))
 
                 # Once every 1000 steps, display the validation results
-                if stepcount % 1000 == 0:
+                if stepcount % 500 == 0:
                     feed_dict = { images_pl : x_v, labels_pl : y_v, keep_prob : 1.0}
                     validation_accuracy = sess.run(accuracy, feed_dict = feed_dict)
                     print("On Validation Dataset: Accuracy = %0.04f" % validation_accuracy)
