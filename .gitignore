@@ -1,9 +1,17 @@
 scraped_images
 resized2
 resized3
+.vscode
+output
+
 scraped_images/*
 resized2/*
 resized3/*
+.vscode/*
+output/*
+
 classhistogram.png
 datasummary.txt
 imagelist.csv
+nodropout.pb
+data.p
