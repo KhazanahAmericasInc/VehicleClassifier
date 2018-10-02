@@ -15,7 +15,9 @@ import cv2
 INPUTOPERATION = "input"
 OUTPUTOPERATION = "output"
 IMAGESHAPE = 64
-LABELS = ("SUV", "SEDAN", "TRUCK")
+LABELS=("VAN","PLANE","SHIP")
+#LABELS = ("DOG", "PUG", "PUPPY")
+#LABELS = ("SUV", "SEDAN", "TRUCK")
 
 # Given a file path to a tensorflow model, it loads the graph.
 def load_graph(model_file):
@@ -111,6 +113,11 @@ def main(args):
 
             # check confidence level, for negative classification
             fLabel = LABELS[index] if results[index] >= 0.995 else "Unknown"
+            
+            print("IMAGE:")
+            for i in range(len(LABELS)):
+                print(LABELS[i],results[i])
+
             print("Label",LABELS[index],"Confidence:",results[index],"Final Label:", fLabel)
 
             cv2.putText(label_img, fLabel , (10, 75), cv2.FONT_HERSHEY_COMPLEX_SMALL, 3, 255, 1, 8, False)

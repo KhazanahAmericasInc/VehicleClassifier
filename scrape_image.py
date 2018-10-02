@@ -59,6 +59,7 @@ def main(args):
                 try:
                     raw_img = Image.open(BytesIO(requests.get(img, timeout=30).content))
                     raw_img.save(os.path.join(os.path.join(parent_folder, query), "{}{}.{}".format(query, counter, raw_img.format.lower())))
+                    print("{}{}.{}".format(query, counter, raw_img.format.lower()))
                     counter += 1
                     if counter >= max_images:
                         break

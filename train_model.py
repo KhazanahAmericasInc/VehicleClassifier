@@ -17,7 +17,7 @@ import argparse
 ###
 
 # global constants for the script
-VALIDATIONSIZE = 900
+VALIDATIONSIZE = 10
 BATCHSIZE = 100
 LEARNINGRATE = 0.001
 DECAY = 0.9
@@ -132,7 +132,8 @@ def main(args):
     y_v = y_one_hot[:VALIDATIONSIZE]
     x_t = x[VALIDATIONSIZE:, ...]
     y_t = y_one_hot[VALIDATIONSIZE:]
-    #####
+    ##### 
+    print(x_v)
 
     num_training_imgs = x.shape[0]
     image_shape = x.shape[1:]
@@ -183,13 +184,14 @@ def main(args):
 
         ##### Running Training
         for epoch in range(NUMEPOCH):
+            print("running training")
 
             # Initialize batch image generator
             train_gen = batch_gen(x_t, y_t, BATCHSIZE)
             num_batches_per_epoch = x_t.shape[0] // BATCHSIZE
 
             for _ in range(num_batches_per_epoch):
-
+                
                 # Feed batched training images to train
                 images_batch, labels_batch = next(train_gen)
                 feed_dict = { images_pl : images_batch, labels_pl : labels_batch, keep_prob : 0.5}
@@ -198,12 +200,12 @@ def main(args):
                 stepcount += 1
 
                 # Display training status
-                if stepcount % 100 == 0:
+                if stepcount % 20 == 0:
                     duration = time.time() - start_time
                     print("Step %d: loss = %.4f. Time Elapsed = %.3f sec" % (stepcount, loss_value, duration))
 
                 # Once every 1000 steps, display the validation results
-                if stepcount % 1000 == 0:
+                if stepcount % 500 == 0:
                     feed_dict = { images_pl : x_v, labels_pl : y_v, keep_prob : 1.0}
                     validation_accuracy = sess.run(accuracy, feed_dict = feed_dict)
                     print("On Validation Dataset: Accuracy = %0.04f" % validation_accuracy)
@@ -220,6 +222,7 @@ def main(args):
 
         # Save network to a frozen model
         output_graph_def = graph_util.convert_variables_to_constants(sess, sess.graph.as_graph_def(), ['output'])
+        print(OUTMODEL)
         with tf.gfile.FastGFile(OUTMODEL, 'wb') as f:
             f.write(output_graph_def.SerializeToString())
     #####
@@ -227,7 +230,7 @@ def main(args):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument("--train_data", default="traindata.p", help="name of file containing training images")
+    parser.add_argument("--train_data", default="data.p", help="name of file containing training images")
     parser.add_argument("--test_data", help="name of file containing test images")
     parser.add_argument("--output_model_name", default="my_model", help="name of output model")
     parser.add_argument("--output_directory", default="output", help="name of output directory")
