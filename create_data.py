@@ -41,10 +41,18 @@ def main(args):
     data['features'] = np.ndarray(shape=(imagecount, args.img_size, args.img_size, args.num_channel), dtype=np.uint8)
     data['label'] = np.ndarray(shape=(imagecount, ), dtype = np.uint8)
    
+    labels = {}
+    counter = 0
+    
     # Iterates through all the images and saves them to the binary file
     for count, img in enumerate(imagelist):
-        label = int(img[0]) - 1 
+        _class = img[:img.index('/')]
+        if _class not in labels:
+            labels[_class] = counter
+            counter += 1
+        label = labels[_class]
         data['label'][count] = label
+
         if args.num_channel == 1:
             gray = np.asarray(Image.open(os.path.join(imagedir, img.strip())).convert('L'))
             data['features'][count] = gray[:, :, np.newaxis]
@@ -57,7 +65,7 @@ def main(args):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument("--input_list_file", default="resized/imagelist.csv", help="path to input image list file")
+    parser.add_argument("--input_list_file", default="imagelist.csv", help="path to input image list file")
     parser.add_argument("--input_directory", default="resized", help="name of directory that contains images")
     parser.add_argument("--out_file", default="data.p", help="name of output file containing image data")
     parser.add_argument("--img_size", default = 64, type = int, help="size of image in pixels (assumed square)")
