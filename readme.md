@@ -37,3 +37,10 @@ python3 cnn_v1.py --test_data="<PATH_TO_VEHICLE_IMAGES>"
 | remove_dropout.py | <ul><li>*model_directory_name* - set the name of the directory the model is saved in</li><li> *model_file* - set the name of the model file</li> <li>*output_model_file* - set the filename of the output model</li> | This script removes the redundant layers of the trained model. |
 
 \* - required flag
+
+##Image Scraping
+https://github.com/hardikvasa/google-images-download#troubleshooting-errors-issues
+###Example Command
+```
+googleimagesdownload --keywords "Freight Truck" --chromedriver ./chromedriver --limit 1000
+```

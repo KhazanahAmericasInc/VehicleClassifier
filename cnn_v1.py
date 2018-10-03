@@ -11,11 +11,13 @@ import cv2
 # The window requires a key press to move on to the next image. 
 ### 
 
+
+
 # Global Variables
 INPUTOPERATION = "input"
 OUTPUTOPERATION = "output"
 IMAGESHAPE = 64
-LABELS=("VAN","PLANE","SHIP")
+LABELS=("SEDAN","SUV","PICKUP TRUCK", "TIMBER TRUCK")
 #LABELS = ("DOG", "PUG", "PUPPY")
 #LABELS = ("SUV", "SEDAN", "TRUCK")
 
@@ -112,10 +114,10 @@ def main(args):
             index = np.argmax(results)
 
             # check confidence level, for negative classification
-            fLabel = LABELS[index] if results[index] >= 0.995 else "Unknown"
+            fLabel = LABELS[index] if results[index] >= 0.5 else "Unknown"
             
             print("IMAGE:")
-            for i in range(len(LABELS)):
+            for i in range(len(results)):
                 print(LABELS[i],results[i])
 
             print("Label",LABELS[index],"Confidence:",results[index],"Final Label:", fLabel)

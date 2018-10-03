@@ -112,7 +112,7 @@ def main(args):
             index = np.argmax(results)
 
             # check confidence level, for negative classification
-            fLabel = LABELS[index] if results[index] >= 0.995 else "Unknown"
+            fLabel = LABELS[index] if results[index] >= 0.5 else "Unknown"
             print("Label",LABELS[index],"Confidence:",results[index],"Final Label:", fLabel)
 
 
