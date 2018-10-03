@@ -75,6 +75,7 @@ def main(arg_dict):
                     print("Error setting max sample")
                     raise
             for line in filecontent:
+                print(line)
                 imagelist.append("{}/{}\n".format(subdir, line.strip()))
                 if subdir in imagecount.keys():
                     imagecount[subdir] += 1

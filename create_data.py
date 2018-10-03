@@ -35,8 +35,9 @@ def main(args):
     imagecount = len(imagelist)
 
     # Shuffle the list of images
-    if (args.shuffle):
-        random.shuffle(imagelist)
+    #if (args.shuffle):
+    random.shuffle(imagelist)
+    
     data = {}
     data['features'] = np.ndarray(shape=(imagecount, args.img_size, args.img_size, args.num_channel), dtype=np.uint8)
     data['label'] = np.ndarray(shape=(imagecount, ), dtype = np.uint8)
@@ -47,6 +48,8 @@ def main(args):
     # Iterates through all the images and saves them to the binary file
     for count, img in enumerate(imagelist):
         _class = img[:img.index('/')]
+
+        print(_class)
         if _class not in labels:
             labels[_class] = counter
             counter += 1
@@ -58,7 +61,8 @@ def main(args):
             data['features'][count] = gray[:, :, np.newaxis]
         else:
             data['features'][count] = np.asarray(Image.open(os.path.join(imagedir, img.strip())).convert('RGB'))
-
+    
+    print (labels)
     print ("Creating {}".format(args.out_file))
     pickle.dump(data, open(args.out_file, 'wb'))
 

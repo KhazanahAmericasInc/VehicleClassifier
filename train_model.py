@@ -17,7 +17,7 @@ import argparse
 ###
 
 # global constants for the script
-VALIDATIONSIZE = 10
+VALIDATIONSIZE = 50
 BATCHSIZE = 100
 LEARNINGRATE = 0.001
 DECAY = 0.9
@@ -184,7 +184,7 @@ def main(args):
 
         ##### Running Training
         for epoch in range(NUMEPOCH):
-            print("running training")
+            print("running training epoch: ",epoch," of ", NUMEPOCH)
 
             # Initialize batch image generator
             train_gen = batch_gen(x_t, y_t, BATCHSIZE)
@@ -208,11 +208,11 @@ def main(args):
                 if stepcount % 500 == 0:
                     feed_dict = { images_pl : x_v, labels_pl : y_v, keep_prob : 1.0}
                     validation_accuracy = sess.run(accuracy, feed_dict = feed_dict)
-                    print("On Validation Dataset: Accuracy = %0.04f" % validation_accuracy)
+                    print("On Validation Dataset: Accuracy = %0.10f" % validation_accuracy)
                     if args.test_data is not None:
                         feed_dict = { images_pl : x_test, labels_pl: y_one_hot_test, keep_prob: 1.0}
                         testing_accuracy = sess.run(accuracy, feed_dict = feed_dict)
-                        print("On Testing Dataset: Accuracy = %0.04f" % testing_accuracy)
+                        print("On Testing Dataset: Accuracy = %0.10f" % testing_accuracy)
                     
         print ("DONE TRAINING")
         #####
