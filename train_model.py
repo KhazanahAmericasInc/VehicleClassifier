@@ -17,11 +17,20 @@ import argparse
 ###
 
 # global constants for the script
+
 VALIDATIONSIZE = 50
-BATCHSIZE = 100
+BATCHSIZE = 200
 LEARNINGRATE = 0.001
 DECAY = 0.9
 NUMEPOCH = 200
+
+
+#DEFAULTS
+#VALIDATIONSIZE = 50
+#BATCHSIZE = 100
+#LEARNINGRATE = 0.001
+#DECAY = 0.9
+#NUMEPOCH = 200
 
 ### Initializes placeholders (containing image data and their labels)
 def input_placeholders(img_shape, num_labels):
