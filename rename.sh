@@ -1,5 +1,6 @@
 rm -Rf *.gif
 rm -Rf *.ash
+rm -Rf *.web
 
 i=1
 for f in *.jpg

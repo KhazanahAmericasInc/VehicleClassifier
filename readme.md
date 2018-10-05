@@ -17,12 +17,53 @@ The following list of dependencies are required for the classifier and training 
 ## Classification Quickstart
 1. Clone the repository 
 2. Create a folder with images of vehicles
-3. Run the following command:
+3. Run the following command in the terminal:
 ```
 python3 cnn_v1.py --test_data="<PATH_TO_VEHICLE_IMAGES>"
 ```
 
+## Create-your-own Classifier Quickstart
+1. Clone the repository
+2. Create a folder named "scraped_images" in the root of the project directory
+3. Create folders for each class in "scraped_images" (i.e. "./scraped_images/dogs", "./scraped_images/cats"
+4. Modify the hyper-parameters defined in train_model.py
+5. Run the "./auto.sh" bash script
+6. Modify cnn_v1.py to contain the custom class labels
+7. run cnn_v1.py with the new model
+
+
 ## Contents
+
+### Bash Scripts
+To use a bash script, add give the user permission to execute the file by typing the following command in the terminal:
+```
+chmod u+x <ScriptName>
+```
+For Example:
+```
+chmod u+x auto.sh
+```
+Then type the following command to run the script:
+```
+sudo ./<ScriptName>
+```
+For Example:
+```
+./auto.sh
+```
+
+
+| Script Name | Description |
+|:------------|:------------|
+|scrape_default.sh|Automatically scrapes the default dataset (dogs, pugs, puppies), resizes, creates data, trains neural net and trains it.|
+|auto.sh|Given a custom dataset placed in ./scraped_images/, with images separated by class folders, it will automatically resize and train the neural net with the hyper-parameters defined in train_model.py|
+|clean.sh|Cleans the repository of images and the default generated neural net.|
+|rename.sh|Removes some non-image files obtained from google images, and renames the image files to be parsable by the python scripts. Works within it's own directory, i.e. must be copied to the specific class folder before used. |
+
+For more detailed information, please open to view the script files themselves.
+
+
+### Python Scripts
 
 | Script Name | Flags | Description |
 |:------------|:------------|:-----------|
@@ -38,9 +79,19 @@ python3 cnn_v1.py --test_data="<PATH_TO_VEHICLE_IMAGES>"
 
 \* - required flag
 
-##Image Scraping
-https://github.com/hardikvasa/google-images-download#troubleshooting-errors-issues
-###Example Command
+### Pre-trained Neural Network Models
+
+| Script Name | Labels |
+|:------------|:------:|
+| model.pb | ("SUV", "SEDAN", "TRUCK") |
+| multi_trucksmodel.pb | ("SUV", "FREIGHT TRUCK", "TIMBER TRUCK", "SEDAN", "PICKUP TRUCK", "OIL TRUCK") |
+| trucksmodel.pb | ("SEDAN", "TIMBER TRUCK", "OIL TRUCK") |
+## Image Scraping
+To scrape more than 100 images, please use the following tool: [googleimagesdownload](https://github.com/hardikvasa/google-images-download#troubleshooting-errors-issues)
+
+Please follow the tutorial in the googleimagesdownload README.md on downloading more than 100 images.
+
+#### Example Command
 ```
 googleimagesdownload --keywords "Freight Truck" --chromedriver ./chromedriver --limit 1000
 ```
