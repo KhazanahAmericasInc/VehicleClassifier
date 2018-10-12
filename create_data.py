@@ -36,7 +36,7 @@ def main(args):
 
     # Shuffle the list of images
     #if (args.shuffle):
-    random.shuffle(imagelist)
+    #random.shuffle(imagelist)
     
     data = {}
     data['features'] = np.ndarray(shape=(imagecount, args.img_size, args.img_size, args.num_channel), dtype=np.uint8)

@@ -18,8 +18,8 @@ import argparse
 
 # global constants for the script
 
-VALIDATIONSIZE = 50
-BATCHSIZE = 200
+VALIDATIONSIZE = 100
+BATCHSIZE = 75
 LEARNINGRATE = 0.001
 DECAY = 0.9
 NUMEPOCH = 200

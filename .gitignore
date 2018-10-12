@@ -1,10 +1,12 @@
 scraped_images
+resized
 resized2
 resized3
 .vscode
 output
 
 scraped_images/*
+resized/*
 resized2/*
 resized3/*
 .vscode/*
