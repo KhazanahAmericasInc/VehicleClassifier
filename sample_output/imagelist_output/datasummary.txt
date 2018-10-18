@@ -1,5 +1,0 @@
-CLASSLABELS = 3
-CLASS	NUMIMAGES
-cat	3
-chicken	9
-dog	1

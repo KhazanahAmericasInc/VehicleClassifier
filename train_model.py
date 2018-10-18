@@ -18,10 +18,15 @@ import argparse
 
 # global constants for the script
 
-VALIDATIONSIZE = 100
-BATCHSIZE = 75
-LEARNINGRATE = 0.001
-DECAY = 0.9
+# Validation Size: the amount of images to use as a validation check 
+VALIDATIONSIZE = 50
+# Batch Size: the amount of images per batch for training
+BATCHSIZE = 380
+# Learning Rate: the speed in which the neural net learns
+LEARNINGRATE = 0.011
+# Decay: the multiplier in which the weights of the training decay by
+DECAY = 0.95
+# Numepoch: the total number of epochs
 NUMEPOCH = 200
 
 
@@ -209,12 +214,12 @@ def main(args):
                 stepcount += 1
 
                 # Display training status
-                if stepcount % 20 == 0:
+                if stepcount % 10 == 0:
                     duration = time.time() - start_time
                     print("Step %d: loss = %.4f. Time Elapsed = %.3f sec" % (stepcount, loss_value, duration))
 
                 # Once every 1000 steps, display the validation results
-                if stepcount % 500 == 0:
+                if stepcount % 50 == 0:
                     feed_dict = { images_pl : x_v, labels_pl : y_v, keep_prob : 1.0}
                     validation_accuracy = sess.run(accuracy, feed_dict = feed_dict)
                     print("On Validation Dataset: Accuracy = %0.10f" % validation_accuracy)
