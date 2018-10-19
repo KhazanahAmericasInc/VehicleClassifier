@@ -59,6 +59,7 @@ For Example:
 |auto.sh|Given a custom dataset placed in ./scraped_images/, with images separated by class folders, it will automatically resize and train the neural net with the hyper-parameters defined in train_model.py|
 |clean.sh|Cleans the repository of images and the default generated neural net.|
 |rename.sh|Removes some non-image files obtained from google images, and renames the image files to be parsable by the python scripts. Works within it's own directory, i.e. must be copied to the specific class folder before used. |
+|clean_all_but_scraped.sh|Cleans the repository of images and default generated neural net, but leaves scraped_images folder.|
 
 For more detailed information, please open to view the script files themselves.
 
