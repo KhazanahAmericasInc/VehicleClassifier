@@ -13,3 +13,4 @@ rm -Rf output
 rm -Rf resized
 
 rm classhistogram.png datasummary.txt imagelist.csv nodropout.pb data.p
+find . -name '*.csv' -type f -delete

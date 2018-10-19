@@ -21,11 +21,11 @@ import argparse
 # Validation Size: the amount of images to use as a validation check 
 VALIDATIONSIZE = 50
 # Batch Size: the amount of images per batch for training
-BATCHSIZE = 380
+BATCHSIZE = 300
 # Learning Rate: the speed in which the neural net learns
-LEARNINGRATE = 0.011
+LEARNINGRATE = 0.001
 # Decay: the multiplier in which the weights of the training decay by
-DECAY = 0.95
+DECAY = 0.9
 # Numepoch: the total number of epochs
 NUMEPOCH = 200
 

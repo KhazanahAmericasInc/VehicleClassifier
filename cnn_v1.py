@@ -20,7 +20,7 @@ IMAGESHAPE = 64
 LABELS = ("SUV", "FREIGHT TRUCK", "TIMBER TRUCK", "SEDAN", "PICKUP TRUCK", "OIL TRUCK")
 #LABELS = ("SEDAN", "TIMBER TRUCK", "OIL TRUCK")
 #LABELS=("FREIGHT TRUCK","OIL TRUCK","PICKUP TRUCK", "SEDAN", "SUV", "TIMBER TRUCK")
-#LABELS = ("DOG", "PUG", "PUPPY")i
+#LABELS = ("DOG", "PUG", "PUPPY")
 #LABELS = ("SUV", "SEDAN", "TRUCK")
 
 # Given a file path to a tensorflow model, it loads the graph.
